@@ -1,18 +1,19 @@
-package com.example.proxy.config.v1_proxy.interface_proxy;
+package com.example.proxy.config.v1_proxy.concrete_proxy;
 
 import com.example.proxy.TraceStatus;
 import com.example.proxy.logTrace.LogTrace;
-import com.example.proxy.v1.OrderRepositoryV1;
-import lombok.RequiredArgsConstructor;
+import com.example.proxy.v2.OrderRepositoryV2;
 
-@RequiredArgsConstructor
-public class OrderRepositoryInterfaceProxy implements OrderRepositoryV1 {
+public class OrderRepositoryConcreteProxy extends OrderRepositoryV2 {
 
-    private final OrderRepositoryV1 target;
+    private final OrderRepositoryV2 target;
     private final LogTrace logTrace;
 
+    public OrderRepositoryConcreteProxy(OrderRepositoryV2 target, LogTrace logTrace) {
+        this.target = target;
+        this.logTrace = logTrace;
+    }
 
-    @Override
     public void save(String itemId) {
 
         TraceStatus status = null;
